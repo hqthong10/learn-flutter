@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:ui';
 
 void main() {
-  runApp(const MyApp());
+  runZonedGuarded<Future<void>>(() async {
+    runApp(const MyApp());
+  }, (error, stack) {
+    // FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  });
 }
 
 class MyApp extends StatelessWidget {
