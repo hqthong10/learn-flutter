@@ -3,10 +3,27 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runZonedGuarded<Future<void>>(() async {
+    final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
+    DartPluginRegistrant.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    final GoogleMapsFlutterPlatform mapsImplementation =
+        GoogleMapsFlutterPlatform.instance;
+    if (mapsImplementation is GoogleMapsFlutterAndroid) {
+      mapsImplementation.useAndroidViewSurface = true;
+    }
+
     runApp(const MyApp());
   }, (error, stack) {
     // FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);

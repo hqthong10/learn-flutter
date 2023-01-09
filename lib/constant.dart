@@ -1,6 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:piepme/model/user/n100.dart';
+import 'package:learn_flutter/model/user/n100.dart';
 import 'package:video_player/video_player.dart';
 
 /// FF7A96
