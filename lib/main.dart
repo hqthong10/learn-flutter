@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
+import 'package:flutter/material.dart';
 
 void main() {
   runZonedGuarded<Future<void>>(() async {
@@ -120,3 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+void printWrapped(String text, {String name = '', Object? error}) =>
+    log(text, name: name, error: error);
